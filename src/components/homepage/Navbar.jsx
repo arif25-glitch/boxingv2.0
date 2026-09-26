@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 import { Flame, Menu, X, Shield, User } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
+/**
+ * Navbar — Transparent fixed navbar with React Router Links.
+ * Links: Program, Pelatih, Fasilitas Ring, Membership.
+ * CTA portals: Member Portal (/dashboard) + Admin HQ (/admin).
+ * Mobile: hamburger with Lucide Menu/X icon toggle.
+ */
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
@@ -16,7 +22,8 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0c14]/90 backdrop-blur-md border-b border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo */}
+
+        {/* ── Brand Logo ── */}
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-sm bg-gradient-to-br from-[#FF3B30] to-[#003B95] flex items-center justify-center font-black text-white text-lg shadow-lg group-hover:scale-105 transition-transform">
             <Flame className="w-6 h-6 text-white" />
@@ -26,12 +33,12 @@ export default function Navbar() {
               JNN BOXING
             </span>
             <span className="text-[10px] text-white/50 tracking-widest uppercase block mt-1">
-              Club & Championship Ring
+              Club &amp; Championship Ring
             </span>
           </div>
         </Link>
 
-        {/* Desktop Links */}
+        {/* ── Desktop Links ── */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
@@ -44,7 +51,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Action Portals */}
+        {/* ── Desktop Action Portals ── */}
         <div className="hidden sm:flex items-center gap-3">
           <Link to="/dashboard">
             <Button
@@ -52,7 +59,8 @@ export default function Navbar() {
               size="sm"
               className="border-white/20 text-white hover:bg-white/10 font-bold uppercase tracking-wider text-xs rounded-sm"
             >
-              <User className="w-3.5 h-3.5 mr-1.5 text-[#5b8de8]" /> Member Portal
+              <User className="w-3.5 h-3.5 mr-1.5 text-[#5b8de8]" />
+              Member Portal
             </Button>
           </Link>
           <Link to="/admin">
@@ -60,12 +68,13 @@ export default function Navbar() {
               size="sm"
               className="bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wider text-xs rounded-sm shadow-md shadow-[#FF3B30]/20"
             >
-              <Shield className="w-3.5 h-3.5 mr-1.5" /> Admin HQ
+              <Shield className="w-3.5 h-3.5 mr-1.5" />
+              Admin HQ
             </Button>
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* ── Mobile Hamburger ── */}
         <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -77,7 +86,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* ── Mobile Drawer ── */}
       {mobileMenuOpen && (
         <div className="sm:hidden bg-[#0c1017] border-b border-white/10 px-4 py-6 space-y-4">
           <nav className="space-y-3">
@@ -93,97 +102,25 @@ export default function Navbar() {
             ))}
           </nav>
 
-<<<<<<< HEAD
           <div className="pt-4 border-t border-white/10 flex flex-col gap-2.5">
             <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
               <Button
                 variant="outline"
                 className="w-full border-white/20 text-white font-bold uppercase tracking-wider text-xs justify-center"
               >
-                <User className="w-4 h-4 mr-2 text-[#5b8de8]" /> Member Portal
+                <User className="w-4 h-4 mr-2 text-[#5b8de8]" />
+                Member Portal
               </Button>
             </Link>
             <Link to="/admin" onClick={() => setMobileMenuOpen(false)}>
               <Button className="w-full bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wider text-xs justify-center">
-                <Shield className="w-4 h-4 mr-2" /> Admin HQ
+                <Shield className="w-4 h-4 mr-2" />
+                Admin HQ
               </Button>
             </Link>
           </div>
         </div>
       )}
-=======
-          {/* ── Desktop CTA ── */}
-          <div className="hidden md:block">
-            <Button
-              size="sm"
-              className="bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wide px-6 rounded-sm border-0"
-              onClick={() => handleNavClick('#daftar')}
-            >
-              Form Daftar
-            </Button>
-          </div>
-
-          {/* ── Mobile hamburger ── */}
-          <button
-            type="button"
-            aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-sm text-white hover:bg-white/10 transition-colors"
-          >
-            <span
-              className={[
-                'block w-5 h-px bg-white transition-all duration-300',
-                menuOpen ? 'rotate-45 translate-y-[5px]' : '',
-              ].join(' ')}
-            />
-            <span
-              className={[
-                'block w-5 h-px bg-white transition-all duration-300',
-                menuOpen ? 'opacity-0 scale-x-0' : '',
-              ].join(' ')}
-            />
-            <span
-              className={[
-                'block w-5 h-px bg-white transition-all duration-300',
-                menuOpen ? '-rotate-45 -translate-y-[5px]' : '',
-              ].join(' ')}
-            />
-          </button>
-        </div>
-      </div>
-
-      {/* ── Mobile dropdown menu ── */}
-      <div
-        className={[
-          'md:hidden overflow-hidden transition-all duration-300',
-          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0',
-          'bg-[#0a0c14]/98 backdrop-blur-md border-t border-white/10',
-        ].join(' ')}
-        aria-hidden={!menuOpen}
-      >
-        <nav className="flex flex-col px-4 pb-4 pt-2 gap-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
-              className="px-3 py-3 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-sm transition-colors border-b border-white/5 last:border-0"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-2">
-            <Button
-              className="w-full bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wide rounded-sm border-0"
-              onClick={() => handleNavClick('#daftar')}
-            >
-              Form Daftar
-            </Button>
-          </div>
-        </nav>
-      </div>
->>>>>>> fbaf19d68393dbb3b9f73c3e0541f62e31818f2d
     </header>
   )
 }
