@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 
@@ -82,19 +83,23 @@ export default function HeroSection() {
 
           {/* CTA buttons */}
           <div className="flex flex-wrap gap-3 pt-2">
-            <Button
-              size="lg"
-              className="bg-[#FF3B30] hover:bg-[#cc2f26] text-white border-0 font-bold uppercase tracking-wide px-8 rounded-sm"
-            >
-              Daftar Sekarang
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 hover:text-white font-bold uppercase tracking-wide px-8 rounded-sm"
-            >
-              Lihat Program
-            </Button>
+            <Link to="/dashboard">
+              <Button
+                size="lg"
+                className="bg-[#FF3B30] hover:bg-[#cc2f26] text-white border-0 font-bold uppercase tracking-wide px-8 rounded-sm shadow-lg shadow-[#FF3B30]/25"
+              >
+                Daftar Sekarang
+              </Button>
+            </Link>
+            <a href="#programs">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/30 text-white hover:bg-white/10 hover:text-white font-bold uppercase tracking-wide px-8 rounded-sm"
+              >
+                Lihat Program
+              </Button>
+            </a>
           </div>
         </div>
 
