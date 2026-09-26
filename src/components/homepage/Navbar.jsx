@@ -93,6 +93,7 @@ export default function Navbar() {
             ))}
           </nav>
 
+<<<<<<< HEAD
           <div className="pt-4 border-t border-white/10 flex flex-col gap-2.5">
             <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
               <Button
@@ -110,6 +111,79 @@ export default function Navbar() {
           </div>
         </div>
       )}
+=======
+          {/* ── Desktop CTA ── */}
+          <div className="hidden md:block">
+            <Button
+              size="sm"
+              className="bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wide px-6 rounded-sm border-0"
+              onClick={() => handleNavClick('#daftar')}
+            >
+              Form Daftar
+            </Button>
+          </div>
+
+          {/* ── Mobile hamburger ── */}
+          <button
+            type="button"
+            aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5 rounded-sm text-white hover:bg-white/10 transition-colors"
+          >
+            <span
+              className={[
+                'block w-5 h-px bg-white transition-all duration-300',
+                menuOpen ? 'rotate-45 translate-y-[5px]' : '',
+              ].join(' ')}
+            />
+            <span
+              className={[
+                'block w-5 h-px bg-white transition-all duration-300',
+                menuOpen ? 'opacity-0 scale-x-0' : '',
+              ].join(' ')}
+            />
+            <span
+              className={[
+                'block w-5 h-px bg-white transition-all duration-300',
+                menuOpen ? '-rotate-45 -translate-y-[5px]' : '',
+              ].join(' ')}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* ── Mobile dropdown menu ── */}
+      <div
+        className={[
+          'md:hidden overflow-hidden transition-all duration-300',
+          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0',
+          'bg-[#0a0c14]/98 backdrop-blur-md border-t border-white/10',
+        ].join(' ')}
+        aria-hidden={!menuOpen}
+      >
+        <nav className="flex flex-col px-4 pb-4 pt-2 gap-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={(e) => { e.preventDefault(); handleNavClick(link.href) }}
+              className="px-3 py-3 text-sm font-medium text-white/70 hover:text-white hover:bg-white/5 rounded-sm transition-colors border-b border-white/5 last:border-0"
+            >
+              {link.label}
+            </a>
+          ))}
+          <div className="pt-2">
+            <Button
+              className="w-full bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wide rounded-sm border-0"
+              onClick={() => handleNavClick('#daftar')}
+            >
+              Form Daftar
+            </Button>
+          </div>
+        </nav>
+      </div>
+>>>>>>> fbaf19d68393dbb3b9f73c3e0541f62e31818f2d
     </header>
   )
 }
