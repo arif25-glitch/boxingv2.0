@@ -1,121 +1,106 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+import { Input } from '@/components/ui/input'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <main className="w-full min-h-svh px-4 sm:px-8 lg:px-12 xl:px-16 py-10 space-y-10">
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+      {/* ── Header ── */}
+      <section className="space-y-2">
+        <h1 className="text-4xl font-black uppercase tracking-tight text-foreground">
+          Boxing v2.0
+        </h1>
+        <p className="text-muted-foreground">
+          Sistem manajemen boxing club — modular UI berbasis shadcn/ui
+        </p>
+        <div className="flex gap-2 flex-wrap">
+          <Badge>shadcn/ui</Badge>
+          <Badge variant="secondary">React 19</Badge>
+          <Badge variant="outline">Tailwind v4</Badge>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <Separator />
+
+      {/* ── Button Showcase ── */}
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold">Button Variants</h2>
+        <div className="flex flex-wrap gap-3">
+          <Button>Default</Button>
+          <Button variant="secondary">Secondary</Button>
+          <Button variant="outline">Outline</Button>
+          <Button variant="ghost">Ghost</Button>
+          <Button variant="destructive">Destructive</Button>
+          <Button variant="link">Link</Button>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Button size="sm">Small</Button>
+          <Button size="default">Default</Button>
+          <Button size="lg">Large</Button>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* ── Card Showcase ── */}
+      <section className="space-y-3">
+        <h2 className="text-xl font-bold">Card Component</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Member Aktif</CardTitle>
+              <CardDescription>Total anggota terdaftar bulan ini</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-black text-primary">128</p>
+            </CardContent>
+            <CardFooter>
+              <Badge variant="secondary">+12 minggu ini</Badge>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Sesi Latihan</CardTitle>
+              <CardDescription>Total sesi yang dijadwalkan</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-black text-primary">36</p>
+            </CardContent>
+            <CardFooter>
+              <Badge>Aktif</Badge>
+            </CardFooter>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Pelatih</CardTitle>
+              <CardDescription>Instruktur bersertifikat</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-3xl font-black text-primary">8</p>
+            </CardContent>
+            <CardFooter>
+              <Badge variant="outline">On Duty</Badge>
+            </CardFooter>
+          </Card>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* ── Input Showcase ── */}
+      <section className="space-y-3 max-w-md">
+        <h2 className="text-xl font-bold">Input Component</h2>
+        <Input type="text" placeholder="Cari nama member..." />
+        <Input type="email" placeholder="Email pelatih..." />
+        <Button className="w-full">Cari</Button>
+      </section>
+
+    </main>
   )
 }
 
