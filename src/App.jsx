@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from '@/context/AuthContext'
 import HomePage from '@/components/homepage/HomePage'
+import LoginPage from '@/pages/LoginPage'
 import DashboardLayout from '@/components/layout/DashboardLayout'
 
 // User Portal Pages
@@ -21,6 +22,9 @@ function App() {
         <Routes>
           {/* Landing Page */}
           <Route path="/" element={<HomePage />} />
+
+          {/* Login Page */}
+          <Route path="/login" element={<LoginPage />} />
 
           {/* User Portal Routes */}
           <Route path="/dashboard" element={<DashboardLayout role="user" />}>

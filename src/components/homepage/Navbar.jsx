@@ -4,12 +4,10 @@ import { Flame, Menu, X, ChevronRight, LogIn, LogOut, LayoutDashboard, Shield, U
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/context/AuthContext'
 import { roleToPath } from '@/lib/auth'
-import LoginModal from '@/components/auth/LoginModal'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [loginOpen, setLoginOpen] = useState(false)
   const { user, logout, isAdmin } = useAuth()
   const navigate = useNavigate()
 
@@ -191,7 +189,7 @@ export default function Navbar() {
               ) : (
                 <Button
                   size="sm"
-                  onClick={() => setLoginOpen(true)}
+                  onClick={() => navigate('/login')}
                   className={[
                     'bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wider rounded-full',
                     'shadow-md shadow-[#FF3B30]/20 text-xs transition-[height,padding,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
@@ -265,7 +263,7 @@ export default function Navbar() {
                     </>
                   ) : (
                     <Button
-                      onClick={() => { setMobileMenuOpen(false); setLoginOpen(true) }}
+                      onClick={() => { setMobileMenuOpen(false); navigate('/login') }}
                       className="w-full justify-center rounded-full bg-[#FF3B30] text-xs font-bold uppercase tracking-wider text-white hover:bg-[#cc2f26]"
                     >
                       <LogIn className="mr-2 h-4 w-4" />
@@ -281,8 +279,6 @@ export default function Navbar() {
 
       {/* Spacer to prevent content from hiding behind navbar */}
       <div className="h-20" />
-
-      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </>
   )
 }
