@@ -52,8 +52,8 @@ export default function Navbar() {
           'flex justify-center',
           'transition-all duration-500 ease-in-out',
           // top-of-page: no padding → full-width bar
-          // scrolled: add top padding to "float" the pill
-          scrolled ? 'px-4 sm:px-8 pt-3' : 'px-0 pt-0',
+          // scrolled: add top padding + side margin to "float" the pill
+          scrolled ? 'px-6 sm:px-12 lg:px-20 pt-3' : 'px-0 pt-0',
         ].join(' ')}
       >
         {/* ── Inner nav container — animates shape ── */}
@@ -62,9 +62,9 @@ export default function Navbar() {
             'w-full flex flex-col',
             'transition-all duration-500 ease-in-out',
             scrolled
-              ? // Collapsed pill state
+              ? // Collapsed pill state — wider + more breathing room
                 [
-                  'max-w-3xl',
+                  'max-w-5xl',
                   'rounded-full',
                   'bg-[#0a0c14]/80 backdrop-blur-xl',
                   'border border-white/10',
@@ -86,7 +86,7 @@ export default function Navbar() {
               'flex items-center justify-between w-full',
               'transition-all duration-500 ease-in-out',
               scrolled
-                ? 'h-14 px-5 sm:px-6' // pill: compact height + inner padding
+                ? 'h-14 px-8 sm:px-10' // pill: more horizontal padding inside
                 : 'h-20 px-4 sm:px-8 lg:px-12 xl:px-16', // full bar
             ].join(' ')}
           >
