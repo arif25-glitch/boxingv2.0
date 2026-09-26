@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Flame, Menu, X, Shield, User, ChevronRight } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Flame, Menu, X, ChevronRight, LogIn, LogOut, LayoutDashboard, Shield, UserCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useAuth } from '@/context/AuthContext'
+import { roleToPath } from '@/lib/auth'
+import LoginModal from '@/components/auth/LoginModal'
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [loginOpen, setLoginOpen] = useState(false)
+  const { user, logout, isAdmin } = useAuth()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,6 +35,14 @@ export default function Navbar() {
     const el = document.querySelector(href)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
   }
+
+  const handleLogout = () => {
+    logout()
+    setMobileMenuOpen(false)
+    navigate('/')
+  }
+
+  const portalPath = user ? roleToPath(user.role) : null
 
   return (
     <>
@@ -128,35 +142,66 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* ── Desktop Action Portals ── */}
+            {/* ── Desktop Auth Controls ── */}
             <div className="hidden sm:flex items-center gap-2">
-              <Link to="/dashboard">
+              {user ? (
+                <>
+                  <div
+                    className={[
+                      'flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5',
+                      'transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+                      scrolled ? 'h-8' : 'h-9',
+                    ].join(' ')}
+                  >
+                    {isAdmin
+                      ? <Shield className="w-3.5 h-3.5 text-[#FF3B30]" />
+                      : <UserCircle className="w-3.5 h-3.5 text-[#5b8de8]" />
+                    }
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-white">
+                      {isAdmin ? 'Admin' : 'Member'}
+                    </span>
+                  </div>
+                  <Link to={portalPath}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className={[
+                        'rounded-full border-white/20 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10',
+                        'transition-[height,padding,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+                        scrolled ? 'h-8 px-3' : 'h-9 px-4',
+                      ].join(' ')}
+                    >
+                      <LayoutDashboard className="mr-1.5 h-3.5 w-3.5" />
+                      {isAdmin ? 'Admin HQ' : 'Dashboard'}
+                    </Button>
+                  </Link>
+                  <Button
+                    size="sm"
+                    onClick={handleLogout}
+                    className={[
+                      'rounded-full border border-white/10 bg-white/10 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/20',
+                      'transition-[height,padding,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
+                      scrolled ? 'h-8 px-3' : 'h-9 px-4',
+                    ].join(' ')}
+                  >
+                    <LogOut className="mr-1.5 h-3.5 w-3.5" />
+                    Keluar
+                  </Button>
+                </>
+              ) : (
                 <Button
-                  variant="outline"
                   size="sm"
-                  className={[
-                    'border-white/20 text-white hover:bg-white/10 font-bold uppercase tracking-wider rounded-full',
-                    'text-xs transition-[height,padding,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
-                    scrolled ? 'px-3 h-8' : 'px-4 h-9',
-                  ].join(' ')}
-                >
-                  <User className="w-3.5 h-3.5 mr-1.5 text-[#5b8de8]" />
-                  Member Portal
-                </Button>
-              </Link>
-              <Link to="/admin">
-                <Button
-                  size="sm"
+                  onClick={() => setLoginOpen(true)}
                   className={[
                     'bg-[#FF3B30] hover:bg-[#cc2f26] text-white font-bold uppercase tracking-wider rounded-full',
                     'shadow-md shadow-[#FF3B30]/20 text-xs transition-[height,padding,background-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
-                    scrolled ? 'px-3 h-8' : 'px-4 h-9',
+                    scrolled ? 'px-5 h-8' : 'px-6 h-9',
                   ].join(' ')}
                 >
-                  <Shield className="w-3.5 h-3.5 mr-1.5" />
-                  Admin HQ
+                  <LogIn className="w-3.5 h-3.5 mr-1.5" />
+                  Login
                 </Button>
-              </Link>
+              )}
             </div>
 
             {/* ── Mobile Hamburger ── */}
@@ -185,36 +230,49 @@ export default function Navbar() {
           >
             <div className="min-h-0 overflow-hidden">
               <div className="border-t border-white/10 bg-[#0c1017]/95 pb-4 backdrop-blur-xl">
-              <nav className="flex flex-col gap-1 px-5 pt-3">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    onClick={(e) => { e.preventDefault(); handleAnchor(link.href) }}
-                    className="flex items-center justify-between border-b border-white/5 py-3 text-sm font-bold uppercase tracking-wider text-white/80 transition-colors hover:text-[#FF3B30] last:border-0"
-                  >
-                    {link.label}
-                    <ChevronRight className="w-3.5 h-3.5 text-white/30" />
-                  </a>
-                ))}
-              </nav>
-              <div className="flex flex-col gap-2 px-5 pt-3">
-                <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
-                  <Button
-                    variant="outline"
-                    className="w-full justify-center rounded-full border-white/20 text-xs font-bold uppercase tracking-wider text-white"
-                  >
-                    <User className="w-4 h-4 mr-2 text-[#5b8de8]" />
-                    Member Portal
-                  </Button>
-                </Link>
-                <Link to="/admin" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full justify-center rounded-full bg-[#FF3B30] text-xs font-bold uppercase tracking-wider text-white hover:bg-[#cc2f26]">
-                    <Shield className="w-4 h-4 mr-2" />
-                    Admin HQ
-                  </Button>
-                </Link>
-              </div>
+                <nav className="flex flex-col gap-1 px-5 pt-3">
+                  {navLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      onClick={(e) => { e.preventDefault(); handleAnchor(link.href) }}
+                      className="flex items-center justify-between border-b border-white/5 py-3 text-sm font-bold uppercase tracking-wider text-white/80 transition-colors hover:text-[#FF3B30] last:border-0"
+                    >
+                      {link.label}
+                      <ChevronRight className="w-3.5 h-3.5 text-white/30" />
+                    </a>
+                  ))}
+                </nav>
+                <div className="flex flex-col gap-2 px-5 pt-3">
+                  {user ? (
+                    <>
+                      <Link to={portalPath} onClick={() => setMobileMenuOpen(false)}>
+                        <Button
+                          variant="outline"
+                          className="w-full justify-center rounded-full border-white/20 text-xs font-bold uppercase tracking-wider text-white"
+                        >
+                          <LayoutDashboard className="mr-2 h-4 w-4" />
+                          {isAdmin ? 'Admin HQ' : 'Dashboard'}
+                        </Button>
+                      </Link>
+                      <Button
+                        onClick={handleLogout}
+                        className="w-full justify-center rounded-full border border-white/10 bg-white/10 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/20"
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Keluar
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      onClick={() => { setMobileMenuOpen(false); setLoginOpen(true) }}
+                      className="w-full justify-center rounded-full bg-[#FF3B30] text-xs font-bold uppercase tracking-wider text-white hover:bg-[#cc2f26]"
+                    >
+                      <LogIn className="mr-2 h-4 w-4" />
+                      Login
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -223,6 +281,8 @@ export default function Navbar() {
 
       {/* Spacer to prevent content from hiding behind navbar */}
       <div className="h-20" />
+
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
     </>
   )
 }
