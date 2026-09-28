@@ -1,0 +1,38 @@
+{
+  "coaches": [
+    { "id": "coach-1", "name": "Adrian Pratama", "specialty": "Teknik dan sparring", "image": "/images/coach-technique.png" },
+    { "id": "coach-2", "name": "Bambang Susilo", "specialty": "Kondisi fisik dan kekuatan", "image": "/images/coach-conditioning.png" },
+    { "id": "coach-3", "name": "Hendra Gunawan", "specialty": "Footwork dan teknik gerak", "image": "/images/coach-footwork.png" }
+  ],
+  "programs": [
+    { "id": "program-1", "image": "/images/program-fundamentals.png", "title": "Kelas Dasar", "subtitle": "Teknik dasar boxing", "description": "Belajar posisi tubuh, langkah, dan pukulan dasar.", "features": ["2 sesi per minggu", "Peralatan latihan tersedia"] },
+    { "id": "program-2", "image": "/images/program-sparring.png", "title": "Kelas Sparring", "subtitle": "Latihan sparring terkontrol", "description": "Latihan bersama pasangan untuk melatih jarak, timing, dan pertahanan.", "features": ["Sesi sparring mingguan", "Pendampingan pelatih"] },
+    { "id": "program-3", "image": "/images/program-private.png", "title": "Latihan Privat", "subtitle": "Sesi satu lawan satu", "description": "Latihan dengan pelatih yang disesuaikan dengan kemampuan dan tujuan Anda.", "features": ["Sesi bersama pelatih", "Jadwal fleksibel"] }
+  ],
+  "plans": [
+    { "id": "plan-1", "name": "Paket Reguler", "price": "Rp 850.000", "period": "/ bulan", "description": "Untuk latihan rutin dan kelas grup.", "features": ["Akses area latihan dan samsak", "3 kelas grup per minggu", "Loker dan kamar mandi"] },
+    { "id": "plan-2", "name": "Paket Intensif", "price": "Rp 1.450.000", "period": "/ bulan", "description": "Untuk latihan rutin dengan tambahan sesi sparring.", "features": ["Akses semua ring", "Sesi sparring mingguan", "2 sesi pad work per bulan"] },
+    { "id": "plan-3", "name": "Paket Privat 10 Sesi", "price": "Rp 2.500.000", "period": "/ 10 sesi", "description": "Sepuluh sesi latihan privat bersama pelatih.", "features": ["10 sesi privat", "Jadwal fleksibel", "Reservasi ring privat"] }
+  ],
+  "members": [
+    { "id": "JNN-001", "name": "Member", "email": "user@mail.com", "phone": "+62 812-3456-7890", "planId": "plan-1", "division": "Umum", "status": "Aktif", "expires": "2026-11-10", "ptRemaining": 6 },
+    { "id": "JNN-002", "name": "Rian Pratama", "email": "rian.pratama@gmail.com", "phone": "+62 813-8877-9911", "planId": "plan-2", "division": "Lightweight", "status": "Aktif", "expires": "2026-10-01", "ptRemaining": 2 },
+    { "id": "JNN-003", "name": "Budi Santoso", "email": "budi.santoso88@yahoo.com", "phone": "+62 856-2211-4433", "planId": "plan-2", "division": "Heavyweight", "status": "Aktif", "expires": "2027-09-26", "ptRemaining": 10 },
+    { "id": "JNN-004", "name": "Sarah Amelia", "email": "sarah.amelia@gmail.com", "phone": "+62 818-4455-6677", "planId": "plan-3", "division": "Featherweight", "status": "Aktif", "expires": "2026-12-12", "ptRemaining": 8 },
+    { "id": "JNN-005", "name": "Doni Firmansyah", "email": "doni.firman@gmail.com", "phone": "+62 877-3322-1100", "planId": "plan-1", "division": "Welterweight", "status": "Kedaluwarsa", "expires": "2026-09-15", "ptRemaining": 0 },
+    { "id": "JNN-006", "name": "Ahmad Zaki", "email": "zaki.ahmad@outlook.com", "phone": "+62 821-9988-7766", "planId": "plan-2", "division": "Super Middleweight", "status": "Menunggu", "expires": "", "ptRemaining": 0 }
+  ],
+  "sessions": [
+    { "id": "session-1", "day": "Hari ini", "time": "08:00–09:30", "title": "Boxing Cardio & Mitt Work", "ring": "Ring A", "coachId": "coach-2", "category": "Kondisi fisik", "booked": 10, "capacity": 12, "status": "Selesai" },
+    { "id": "session-2", "day": "Hari ini", "time": "16:00–17:30", "title": "Conditioning & Sparring Prep", "ring": "Ring A", "coachId": "coach-3", "category": "Kondisi fisik", "booked": 8, "capacity": 8, "status": "Berlangsung" },
+    { "id": "session-3", "day": "Hari ini", "time": "19:00–20:30", "title": "Sparring & teknik bertahan", "ring": "Ring A", "coachId": "coach-1", "category": "Sparring", "booked": 7, "capacity": 10, "status": "Akan datang" },
+    { "id": "session-4", "day": "Hari ini", "time": "17:00–18:30", "title": "Footwork Drills", "ring": "Ring B", "coachId": "coach-1", "category": "Teknik", "booked": 6, "capacity": 8, "status": "Akan datang" },
+    { "id": "session-5", "day": "Hari ini", "time": "18:00–19:00", "title": "Private Pad Session", "ring": "Ring C", "coachId": "coach-1", "category": "Privat", "booked": 1, "capacity": 1, "status": "Akan datang" },
+    { "id": "session-6", "day": "Besok", "time": "09:00–10:15", "title": "Boxing Fundamentals", "ring": "Ring B", "coachId": "coach-2", "category": "Teknik", "booked": 7, "capacity": 12, "status": "Akan datang" },
+    { "id": "session-7", "day": "Besok", "time": "18:00–19:30", "title": "Technical Sparring", "ring": "Ring A", "coachId": "coach-1", "category": "Sparring", "booked": 5, "capacity": 10, "status": "Akan datang" },
+    { "id": "session-8", "day": "Lusa", "time": "17:00–18:15", "title": "Power & Conditioning", "ring": "Ring B", "coachId": "coach-2", "category": "Kondisi fisik", "booked": 9, "capacity": 12, "status": "Akan datang" }
+  ],
+  "bookings": [
+    { "id": "booking-1", "memberId": "JNN-001", "sessionId": "session-3" }
+  ]
+}

@@ -1,16 +1,29 @@
-# React + Vite
+# JNN Boxing Club
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Frontend React/Vite untuk homepage, dashboard member, dan dashboard admin.
 
-Currently, two official plugins are available:
+## Menjalankan
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Akun demo: `admin@mail.com` / `admin123` dan `user@mail.com` / `user123`.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Data
 
-## Expanding the Oxlint configuration
+Seluruh data awal berada di [`src/data/seed.json`](src/data/seed.json): pelatih, program, paket, member, sesi latihan, dan pendaftaran. Admin dapat menambah, mengubah, serta menghapus data melalui dashboard. Homepage dan dashboard member langsung membaca data yang sama.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+Perubahan dari UI disimpan sebagai JSON di `localStorage` browser dengan key `jnn_boxing_data_v1`. Data bertahan setelah refresh dan tersinkron di tab lain pada browser serta origin yang sama. Ini belum menggunakan server: data tidak tersinkron antarperangkat atau antarbrowser. Browser tidak dapat menulis balik ke `src/data/seed.json`; file itu menjadi data awal ketika belum ada data tersimpan di browser.
+
+Mengubah `seed.json` tidak menimpa data yang sudah ada di `localStorage`. Untuk melihat seed baru pada browser pengembangan, hapus key `jnn_boxing_data_v1` lewat Developer Tools lalu refresh. Langkah itu akan menghapus perubahan admin dan pendaftaran lokal pada browser tersebut.
+
+Login masih memakai dua akun demo tetap. Member yang baru ditambahkan admin belum otomatis mendapat akun login. Autentikasi dan penyimpanan lokal ini cocok untuk prototipe, belum untuk data produksi.
+
+## Pemeriksaan
+
+```bash
+npm run lint
+npm run build
+```
